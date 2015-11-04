@@ -1,6 +1,7 @@
 angular.module("testApp")
   .controller("mainController", function ($scope, service) {
 
+//Create the request body for the flight search.
 
     $scope.requestBody = {
       "request": {
@@ -42,6 +43,7 @@ angular.module("testApp")
       }
     }
 
+//Set up the search function, which accepts an argument which is a request body.
     $scope.search = function (argument) {
       service.basicSearch(argument).then(function (resultOfSearch) {
         $scope.searchResults = resultOfSearch;
@@ -49,22 +51,16 @@ angular.module("testApp")
       });
     };
 
+
+
+//Call the search function and pass it the request body.
     $scope.search($scope.requestBody);
 
-    $scope.airline = function () {
-      angular.forEach($scope.searchResults.trips.tripOption, function (option) {
-        angular.forEach($scope.searchResults.trips.tripOption[option], function (slice) {
-          angular.forEach($scope.searchResults.trips.tripOption[option][slice], function (segment) {
-            return $scope.searchResults.trips.tripOption[option][slice][segment].flight.carrier
-          })
-        })
-      })
-    }();
-    
-    
-      
 
 
+
+
+    
 
 
 
