@@ -1,0 +1,79 @@
+body {
+	width: 100%;
+	
+}
+
+.wrapper {
+	width: 60%;
+	height: 100%;
+	position: absolute;
+	left: 100px;
+	top: 100px;
+	justify-content: flex-start;
+	border: 2px solid black;
+}
+
+.searchResultsListing {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	border: 1px solid black;
+}
+
+.column {
+	display: flex;
+	flex-direction: column;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	text-align: left;
+	width: 100px;
+	text-indent: 5px;
+}
+
+
+
+.label {
+	font-size: 16px;
+	font-weight: bold;
+	color: white;
+	background-color: rgb(0, 0, 128);
+	border-bottom: 2px solid black;
+	margin-bottom: 5px;
+	line-height: 25px;
+	border-right: 1px solid white;
+}
+
+.secondRow {
+	margin-bottom: 3px;
+
+}
+
+.thirdRow {
+	margin-bottom: 3px;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.bigCell {
+	line-height: 34px;
+}
+
+.saveButtonDiv {
+	text-align: center;
+	width: 100px;
+	line-height: 60px;
+	
+}
+
+.saveButton {
+	height: 30px;
+	margin: 0 auto;
+	width: 70px;
+	border-radius: 5px;
+}
+
+div {
+	border: 1px solid black;
+}
