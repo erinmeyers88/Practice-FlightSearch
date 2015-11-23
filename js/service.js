@@ -1,56 +1,27 @@
 angular.module("testApp")
 	.service("service", function ($http, $q) {
 		
-		this.basicSearch = function (argument) {
+		this.searchResults = function (argument) {
 		
 		var deferred = $q.defer();	
 			
+		//regular key: AIzaSyAFSQP3ClWoPPShBYApLfxjazl-1WsKpu8	
+			
 			$http({
 				method: 'POST',
-				url: 'https://www.googleapis.com/qpxExpress/v1/trips/search?key=AIzaSyAFSQP3ClWoPPShBYApLfxjazl-1WsKpu8',
+				url: 'https://www.googleapis.com/qpxExpress/v1/trips/search?key=AIzaSyCL0ZLFUF5_SsrocXX6ZKSaRlonngvd9cE',
 				data: argument
-			}).then(function (response) {;
+			}).then(function (response) {
 			
-			//Create a variable to hold all of the airlines the search returns.
-			var airlines = [];
-			
-			//Push all of the airlines the search returns into the airlines array.
-			response.data.trips.tripOption.forEach(function(option1){
-				option1.slice.forEach(function(option2){
-					option2.segment.forEach(function(option3){
-						airlines.push(option3.flight.carrier);
-					});
-					
-				});
-			});	
-			
-			
-			//Create a variable to hold all of the total prices the search returns.
-			
-			var totalPrices = [];
-			
-			//Push all of the total prices the search returns into the total prices array .
-			response.data.trips.tripOption.forEach(function(option1){
-				totalPrices.push(option1.saleTotal);
-			});	
-			
-			
-			
-			
-				
-			deferred.resolve({airlines, totalPrices});	
+			var searchResults = response.data.trips.tripOption;
+						
+			deferred.resolve(searchResults);
 			
 			});
 			
 			return deferred.promise;
 		};
 
-	
-	
-	
-	
-	
-	
-		
+
 
 	});
