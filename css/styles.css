@@ -101,6 +101,16 @@ html, body {
 	justify-content: center;
 }
 
+
+.fakelabel {
+	font-weight: bold;
+	color: white;
+	background-color: rgb(0, 0, 128);
+	border-bottom: 2px solid black;
+	height: 25px;
+	border-right: 1px solid white;
+}
+
 .saveButton {
 	height: 40px;
 	width: 70px;
@@ -138,7 +148,7 @@ div p {
 	position: absolute;
 	right: 50px;
 	top: 50px;
-	height: 300px;
+	min-height: 300px;
 	width: 250px;
 	border: 1px solid white;
 	border-radius: 5px;
@@ -169,12 +179,40 @@ div p {
 	font-weight: bold;
 	font-family: Arial, Helvetica, sans-serif;
 	color: white;
-	margin-bottom: 5px;
+	margin-top: 10px;
+	margin-bottom: 15px;
 	line-height: 25px;
 	text-align: center;
-	height: 100px;
+	min-height: 100px;
 }
 
 .airlineFilter {
 	margin-bottom: 30px;
+}
+
+.smallFilterLabel {
+	margin-bottom: 5px;
+}
+
+.chipSection {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.airlineChip {
+	height: 30px;
+	width: 100px;
+	margin: 0 auto;
+	background-color:#fff;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-border-radius: 5px;
+    border: none;
+    color: black;
+    font-size: 12px;
+    margin-top: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }

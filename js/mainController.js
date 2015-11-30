@@ -48,11 +48,44 @@ angular.module("testApp")
     $scope.search = function (argument) {
       service.searchResults(argument).then(function (resultOfSearch) {
 
+          var airlineCodes = {
+                AS: "Alaska Airlines",
+                US: "US Air",
+                VX: "Virgin America",
+                B6: "Jet Blue",
+                UA: "United Airlines",
+                WS: "WestJet"
+              };
+        
         $scope.searchResults = resultOfSearch;
 
         console.log($scope.searchResults);
         
-        $scope.searchResults.forEach(function (option1) {
+        
+        $scope.airlines = [];
+        $scope.cities = [];
+        
+        //Airline Filter Info
+        $scope.searchResults.data.carrier.forEach(function (airline) {
+          
+          airline.code = airline.code.replace(/AS|US|VX|B6|UA|WS/gi, function (code) {
+                return airlineCodes[code];
+              });
+          
+          $scope.airlines.push(airline.code);
+                  
+        });
+        
+        //Origin Filter Info
+        $scope.searchResults.data.city.forEach(function (city) {
+ 
+          $scope.cities.push(city.code);
+          
+        });
+        
+        
+        //Flight Search Info
+        $scope.searchResults.tripOption.forEach(function (option1) {
 
           option1.saleTotal = option1.saleTotal.replace("USD", "$");
 
@@ -66,17 +99,8 @@ angular.module("testApp")
               option3.cleanDuration = h.toString() + ":" + (m < 10 ? "0" : "") + m.toString();
 
 
-              var airlines = {
-                AS: "Alaska Airlines",
-                US: "US Air",
-                VX: "Virgin America",
-                B6: "Jet Blue",
-                UA: "United Airlines",
-                WS: "WestJet"
-              };
-
               option3.flight.carrier = option3.flight.carrier.replace(/AS|US|VX|B6|UA|WS/gi, function (code) {
-                return airlines[code];
+                return airlineCodes[code];
               });
             
                
