@@ -10,73 +10,6 @@
 <body ng-controller="mainController">
 <div class="pageWrapper">
 
-	<!--<div ng-repeat="item in legInfo">
-
-
-		<div>
-			Origin: {{item.origin}} Departure Time: {{item.departureTime}}
-		</div>
-
-		<div>
-			Destination: {{item.destination}} Arrival Time: {{item.arrivalTime}}
-		</div>
-
-		<div>
-			Airline: {{item.airline}} Flight Number: {{item.flightNumber}}
-		</div>
-
-		<div>
-			Total Price: {{item.totalPrice}} Total Duration: {{item.totalDuration}}
-		</div>
-
-		Duration: {{item.duration}}
-	</div>
-	</div>-->
-
-	<!--<div class="listWrapper">
-		<div class="searchResultsListing" ng-repeat="item in legInfo">
-
-			<div class="column">
-				<div class="label">Departing</div>
-				<div class="secondRow bold">{{item.origin}}</div>
-				<div class="thirdRow">{{item.departureTime}}</div>
-			</div>
-
-			<div class="column">
-				<div class="label">Arriving</div>
-				<div class="secondRow bold">{{item.destination}}</div>
-				<div class="thirdRow">{{item.arrivalTime}}</div>
-			</div>
-
-			<div class="column">
-				<div class="label">Flight</div>
-				<div class="secondRow">{{item.airline}}</div>
-				<div class="thirdRow">{{item.flightNumber}}</div>
-			</div>
-
-			<div class="column">
-				<div class="label">Duration</div>
-				<div class="bigCell">{{item.duration}}</div>
-			</div>
-
-			<div class="column">
-				<div class="label">Passengers</div>
-				<div class="bigCell">num pass</div>
-			</div>
-
-			<div class="column">
-				<div class="label">Price</div>
-				<div class="bigCell">{{item.totalPrice}}</div>
-			</div>
-
-			<div class="column saveButtonDiv">
-				<button class="saveButton">Save to Trips</button>
-			</div>
-		</div>
-
-	</div>-->
-
-
 
 <div class="listWrapper">
 		<div class="searchResultsListing" ng-repeat="item in searchResults">
@@ -85,10 +18,9 @@
 				<div class="label">Departing</div>
 				<div ng-repeat="segment in slice.segment">
 					<div ng-repeat="leg in segment.leg">
-						<div class="secondRow">{{leg.origin}}</div>
-						<div class="thirdRow bold">{{leg.origin}}</div>
-						<div class="fourthRow">{{leg.cleanDepartureTime | date: 'h:mm a' }}</div>
-						<div class="fifthRow">{{leg.cleanDepartureTime | date: 'MMM d, y'}}</div>
+						<div class="secondRow bold">{{leg.origin}}</div>
+						<div class="thirdRow">{{leg.cleanDepartureTime | date: 'h:mm a' }}</div>
+						<div class="fourthRow">{{leg.cleanDepartureTime | date: 'MMM d, y'}}</div>
 					</div>
 				</div>
 			</div>
@@ -109,6 +41,7 @@
 				<div ng-repeat="segment in slice.segment">
 						<div class="secondRow bold">{{segment.flight.carrier}}</div>
 						<div class="thirdRow">{{segment.flight.number}}</div>
+						<div class="fourthRow"><br></div>
 				</div>
 			</div>
 			
@@ -117,32 +50,36 @@
 				<div ng-repeat="segment in slice.segment">
 					<div class="secondRow bold">{{segment.cleanDuration}}</div>
 					<div ng-repeat="leg in segment.leg">
-						<div class="thirdRow">{{leg.cleanDuration}}</div>
+						<div class="thirdRow"><br></div>
+						<div class="fourthRow"><br></div>
 					</div>
 				</div>
 			</div>
 
 			<div class="column" ng-repeat="pricing in item.pricing">
 				<div class="label">Passengers</div>
-					<div class="secondRow bold">{{pricing.passengers.adultCount}}</div>
+					<div class="secondRow bold passengers">{{pricing.passengers.adultCount}}</div>
 			</div>
 
 
 
 			<div class="column">
 				<div class="label">Price</div>
-				<div class="bigCell">{{item.saleTotal}}</div>
+				<div class="bigCell bold">{{item.saleTotal}}</div>
 			</div>
 
 
 			<div class="column saveButtonDiv">
-				<button class="saveButton">Save to Trips</button>
+                <input type="button" class="saveButton" value="Save to&#13;&#10;Trips" />
 			</div>
 			
+			
+				
 			
 		</div>
 
 	</div>
+
 
 
 	<div class="filterWrapper">

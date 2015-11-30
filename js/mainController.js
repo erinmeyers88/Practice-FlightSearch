@@ -48,32 +48,38 @@ angular.module("testApp")
     $scope.search = function (argument) {
       service.searchResults(argument).then(function (resultOfSearch) {
 
-
-
         $scope.searchResults = resultOfSearch;
 
-
-
-
-
+        console.log($scope.searchResults);
+        
         $scope.searchResults.forEach(function (option1) {
 
           option1.saleTotal = option1.saleTotal.replace("USD", "$");
 
           option1.slice.forEach(function (option2) {
 
-            option2.duration = option2.duration / 60;
-
             option2.segment.forEach(function (option3) {
-              
-                var m = option3.duration % 60;
-                var h = (option3.duration - m) / 60;
 
-                option3.cleanDuration = h.toString() + ":" + (m < 10 ? "0" : "") + m.toString();
-              
+              var m = option3.duration % 60;
+              var h = (option3.duration - m) / 60;
+
+              option3.cleanDuration = h.toString() + ":" + (m < 10 ? "0" : "") + m.toString();
+
+
+              var airlines = {
+                AS: "Alaska Airlines",
+                US: "US Air",
+                VX: "Virgin America",
+                B6: "Jet Blue",
+                UA: "United Airlines",
+                WS: "WestJet"
+              };
+
+              option3.flight.carrier = option3.flight.carrier.replace(/AS|US|VX|B6|UA|WS/gi, function (code) {
+                return airlines[code];
+              });
             
-
-              // option3.flight.carrier,
+               
               // option3.flight.number,
                  
 
@@ -89,12 +95,6 @@ angular.module("testApp")
                    
                 // option4.destination,
                     
-                    
-                var m = option4.duration % 60;
-                var h = (option4.duration - m) / 60;
-
-                option4.cleanDuration = h.toString() + ":" + (m < 10 ? "0" : "") + m.toString();
-                    
                 // option4.duration
                   
 
@@ -104,65 +104,9 @@ angular.module("testApp")
 
           });
 
-          console.log($scope.searchResults);
-         
-         
-          //   //Push airlines and flight numbers into array of objects.
-		
-          //   $scope.airlineAndFlightNumbers = [];
-          //   $scope.legInfo = [];
-
-       
-       
-          //   $scope.resultsList = [];
-
-          //   $scope.resultObject = {};
-
-          //   $scope.searchResults.forEach(function (option1) {
-
-          //     $scope.resultObject.totalPrice = option1.saleTotal;
-
-          //     option1.slice.forEach(function (option2) {
-
-          //       $scope.resultObject.totalDuration = option2.duration;
-
-          //       option2.segment.forEach(function (option3) {
-
-          //         $scope.resultObject.segments = [
-          //           {
-          //             airline: option3.flight.carrier,
-          //             flightNumber: option3.flight.number,
-          //           }
-          //         ];
-
-          //         option3.leg.forEach(function (option4) {
-
-          //           $scope.resultObject.segments[$scope.resultObject.segments.length-1].legs = [
-          //             {
-          //               arrivalTime: option4.arrivalTime,
-          //               departureTime: option4.departureTime,
-          //               destination: option4.destination,
-          //               origin: option4.origin,
-          //               duration: option4.duration
-          //             }
-          //           ];
-
-          //         }
-          //           );
-          //       });
-
-          //     });
-
-          //     $scope.resultsList.push($scope.resultObject);
-
-
-          //   });
-          //   console.log($scope.resultsList);
-          // });
-
-
-
         });
+
+        console.log($scope.searchResults);
 
       });
 
